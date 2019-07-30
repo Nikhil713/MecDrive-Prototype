@@ -1,7 +1,6 @@
-// import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
+// This is used for Radio button
 enum carpool { yes, no }
 carpool value = carpool.yes;
 
@@ -13,15 +12,21 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  // Used to store details on form submit
   final Map<String, dynamic> _formData = {
-    'email': null,
-    'password': null,
-    'acceptTerms': false
+    'name': null,
+    'phone': null,
+    'branch': null,
+    'year': null,
   };
+  // Value selected by Drodown to select Branch
   String dropdownbranchvalue = 'CSA';
+  // Value selected by Dropdown to select year
   String dropdownyearvalue = '1';
+  // Creating form
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // Creates the Text Field
   Widget _createnamefield() {
     return Container(
       margin: const EdgeInsets.only(right: 20, left: 20),
@@ -34,20 +39,53 @@ class _AuthPageState extends State<AuthPage> {
             labelText: 'Name',
             filled: true,
             fillColor: Colors.white),
-        // obscureText: true,
         validator: (String value) {
+          // Validating the text field on submit
           if (value.isEmpty) {
             return 'Name is Required';
           } else
-            return null; //Remove
+            return null;
         },
         onSaved: (String value) {
-          _formData['password'] = value;
+          _formData['name'] = value;
         },
       ),
     );
   }
 
+  // Creates Field to input Phone Number
+  Widget _createphonefield() {
+    return Container(
+      margin: const EdgeInsets.only(right: 20, left: 20),
+      child: TextFormField(
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            icon: Icon(
+              Icons.phone,
+              color: Color(0xFFFF794A),
+            ),
+            labelText: 'Phone Number',
+            filled: true,
+            fillColor: Colors.white),
+        // Validates input
+        validator: (String value) {
+          if (value == null) {
+            return null;
+          }
+          final n = num.tryParse(value);
+          if (n == null) {
+            return 'Input is not a valid number';
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _formData['phone'] = value;
+        },
+      ),
+    );
+  }
+
+  // Created DropDown to select branch
   Widget _createbranchfield() {
     return Container(
       width: 150,
@@ -55,7 +93,6 @@ class _AuthPageState extends State<AuthPage> {
         child: Row(children: <Widget>[
           Text('Branch :'),
           DropdownButton<String>(
-            // isExpanded: true,
             value: dropdownbranchvalue,
             onChanged: (String newValue) {
               setState(() {
@@ -75,6 +112,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+  // Creates DropDown to select year
   Widget _createyearfield() {
     return Container(
       width: 150,
@@ -82,7 +120,6 @@ class _AuthPageState extends State<AuthPage> {
         child: Row(children: <Widget>[
           Text('Year :'),
           DropdownButton<String>(
-            // isExpanded: true,
             value: dropdownyearvalue,
             onChanged: (String newValue) {
               setState(() {
@@ -102,23 +139,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget _createphonefield() {
-    return Container(
-      margin: const EdgeInsets.only(right: 20, left: 20),
-      child: TextFormField(
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            icon: Icon(
-              Icons.phone,
-              color: Color(0xFFFF794A),
-            ),
-            labelText: 'Phone Number',
-            filled: true,
-            fillColor: Colors.white),
-      ),
-    );
-  }
-
+// Creates Radio Buttons to select if user has a vehicle.
   Widget _createradio() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Text('Do you own a vehicle ?'),
@@ -139,9 +160,9 @@ class _AuthPageState extends State<AuthPage> {
     ]);
   }
 
-  Widget _buildbutton(BuildContext context) {
+// Creates Button to Submit the form
+  Widget _createbutton(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
     return RaisedButton(
       onPressed: _submitForm,
       textColor: Colors.white,
@@ -170,15 +191,22 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
+// Runs when the Button is Clicked.
   void _submitForm() {
-    if (!_formKey.currentState.validate() || !_formData['acceptTerms']) {
+    // Change condition to prevent form submission
+    // formKey.currentState.validate() runs validator of all fields
+    if (!_formKey.currentState.validate()) {
       return;
     }
+    // The next line runs onSaved attribute of all text fields.
     _formKey.currentState.save();
+    _formData['branch'] = dropdownbranchvalue;
+    _formData['year'] = dropdownyearvalue;
     print(_formData);
-    Navigator.pushReplacementNamed(context, '/products');
+// Do something here after form is submitted
   }
 
+// Build Widget of this page.
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
@@ -204,24 +232,24 @@ class _AuthPageState extends State<AuthPage> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    _createnamefield(),
+                    _createnamefield(), // Creates Name Text Field
                     SizedBox(
                       height: 15.0,
                     ),
-                    _createbranchfield(),
+                    _createbranchfield(), // Creates Branch Drop Down
                     SizedBox(
                       height: 10.0,
                     ),
-                    _createyearfield(),
-                    _createphonefield(),
+                    _createyearfield(), // Creates Year Drop Down
+                    _createphonefield(), // Creates Phone Number Field
                     SizedBox(
                       height: 30.0,
                     ),
-                    _createradio(),
+                    _createradio(), // Creates Radio Button
                     SizedBox(
                       height: 30.0,
                     ),
-                    _buildbutton(context),
+                    _createbutton(context), // Creates the submit button
                   ],
                 ),
               ),
