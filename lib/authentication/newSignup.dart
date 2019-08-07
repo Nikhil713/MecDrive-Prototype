@@ -7,6 +7,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String branch = "CSA";
+  String year = '1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,7 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                 // Container design
-                padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
+                padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 width: 300.0,
                 height: 420.0,
                 decoration: BoxDecoration(
@@ -52,9 +55,60 @@ class _SignUpState extends State<SignUp> {
                   autovalidate: true,
                   child: ListView(
                     children: <Widget>[
+                      // UserName
                       TextFormField(
                         decoration: InputDecoration(labelText: "Name"),
-                      )
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(13.0),
+                      ),
+                      // Branch
+                      Row(
+                        children: <Widget>[
+                          Text("Branch: ", style: TextStyle(fontSize: 18.0)),
+                          Padding(padding: EdgeInsets.all(5.0)),
+                          DropdownButton<String>(
+                            value: branch,
+                            items: <String>[
+                              'CSA',
+                              'CSB',
+                              'ECA',
+                              'ECB',
+                              'EEE',
+                              'EB'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String value) {
+                              setState(() {
+                                branch = value;
+                              });
+                            },
+                          ),
+                          Padding(padding: EdgeInsets.all(10.0)),
+                          // Year
+                          Text("Year: ", style: TextStyle(fontSize: 18.0)),
+                          Padding(padding: EdgeInsets.all(5.0)),
+                          DropdownButton<String>(
+                            value: year,
+                            items: <String>['1', '2', '3', '4']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String value) {
+                              setState(() {
+                                branch = value;
+                              });
+                            },
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),
