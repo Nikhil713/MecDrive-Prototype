@@ -12,7 +12,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  // Used to store details on form submit
+  // Sign up form details
   final Map<String, dynamic> _formData = {
     'name': null,
     'phone': null,
