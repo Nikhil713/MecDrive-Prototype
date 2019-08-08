@@ -26,19 +26,22 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
           bottom: TabBar(
+            indicatorColor: Colors.white,
             tabs: <Widget>[
               Tab(
                 icon: Icon(Icons.phone_android),
                 text: "Find Ride",
               ),
               Tab(
-                icon: Icon(Icons.bookmark),
+                icon: Icon(Icons.local_taxi),
                 text: "Offer Ride",
               )
             ],
           ),
-          title: Text("Home Screen"),
+          title: Text("MEC Uber"),
         ),
         body: TabBarView(
           children: <Widget>[
