@@ -6,19 +6,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   // Destination
   String destination = "";
 
-  // Bottom navigation bar 
+  // Bottom navigation bar
   int _currentIndex = 0;
 
-  void onTabTapped(int index){
+  void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Center(
               child: Container(
-                padding: EdgeInsets.fromLTRB(15.0,20.0,15.0,10.0),
+                padding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 10.0),
                 height: 350.0,
                 width: 300.0,
                 decoration: BoxDecoration(
@@ -55,15 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(8.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0.0, 15.0),
-                      blurRadius: 15.0
-                    ),
+                        color: Colors.black12,
+                        offset: Offset(0.0, 15.0),
+                        blurRadius: 15.0),
                     BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0.0, -10.0),
-                      blurRadius: 10.0
-                    )
+                        color: Colors.black12,
+                        offset: Offset(0.0, -10.0),
+                        blurRadius: 10.0)
                   ],
                 ),
                 child: Column(
@@ -72,9 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Starting Location
                     Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(8.0)
-                      ),
+                          border: Border.all(color: Colors.black12),
+                          borderRadius: BorderRadius.circular(8.0)),
                       child: ListTile(
                         leading: Icon(Icons.location_on),
                         title: Text(
@@ -90,16 +85,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.circular(8.0)
-                      ),
+                          border: Border.all(color: Colors.black12),
+                          borderRadius: BorderRadius.circular(8.0)),
                       child: ListTile(
                         leading: Icon(Icons.location_on),
                         title: TextField(
                           decoration: InputDecoration(
-                            hintText: "Destination"
+                            hintText: "Destination",
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black12),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black12),
+                            ),
                           ),
-                          onChanged: (String val){
+                          onChanged: (String val) {
                             setState(() {
                               destination = val;
                             });
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Offer Ride
             Center(
               child: RaisedButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text("hello"),
               ),
             )
@@ -124,19 +124,14 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: onTabTapped,
+          selectedItemColor: Colors.black,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home")
-            ),
+                icon: Icon(Icons.home), title: Text("Home")),
             BottomNavigationBarItem(
-              icon: Icon(Icons.directions_bike),
-              title: Text("My Rides")
-            ),
+                icon: Icon(Icons.directions_bike), title: Text("My Rides")),
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              title: Text("Account")
-            ),
+                icon: Icon(Icons.account_circle), title: Text("Account")),
           ],
         ),
       ),
