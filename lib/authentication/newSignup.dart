@@ -18,15 +18,17 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image(
-                image: AssetImage("assets/signup.png"),
+                width: 320.0,
+                image: AssetImage("assets/SignUp2.jpg"),
               )
             ],
           ),
