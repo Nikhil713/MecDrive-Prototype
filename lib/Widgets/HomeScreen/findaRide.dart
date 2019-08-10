@@ -6,10 +6,9 @@ class FindaRide extends StatefulWidget {
 }
 
 class _FindaRideState extends State<FindaRide> {
-
-   // Destination
+  // Destination
   String destination = "";
-  
+
   @override
   Widget build(BuildContext context) {
     return Center(

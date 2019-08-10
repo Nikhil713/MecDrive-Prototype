@@ -12,7 +12,7 @@ class _OfferRideState extends State<OfferRide> {
       child: Center(
         child: RaisedButton(
           child: Text("offer a ride"),
-          onPressed: (){},
+          onPressed: () {},
         ),
       ),
     );
