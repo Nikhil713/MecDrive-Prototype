@@ -1,45 +1,77 @@
 import 'package:flutter/material.dart';
+// import 'package:splashscreen/splashscreen.dart';
 
 class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          // Where the linear gradient begins and ends
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          // Add one stop for each color. Stops should increase from 0 to 1
-          stops: [0.1, 0.2, 0.55, 0.9],
-          colors: [
-            // Colors are easy thanks to Flutter's Colors class.
-            Color.fromRGBO(255, 255, 255, 1),
-            Color.fromRGBO(255, 255, 255, 1),
-            Color.fromRGBO(180, 180, 180, 1),
-            Color.fromRGBO(255, 255, 255, 1),
-          ],
-        ),
+        color: Colors.black,
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 150.0,
+            ),
+            // Image(
+            //   image: AssetImage('assets/logo.png'),
+            //   width: 160.0,
+            // ),
             Container(
-              alignment: Alignment.center,
-              child: Image(
-                image: AssetImage('assets/logo.png'),
-                width: 250.0,
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                'MEC DRIVE',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 55.0,
+                    fontFamily: 'titlefontt',
+                    fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
-              height: 90.0,
+              height: 200.0,
+            ),
+            SizedBox(
+              height: 60,
+              width: 60,
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+              ),
+            ),
+
+            SizedBox(
+              height: 50.0,
             ),
             Container(
               alignment: Alignment.center,
-              child: Image(
-                image: AssetImage('assets/loading.gif'),
-                width: 80.0,
+              child: Text(
+                'Carpool for Mecians',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              alignment: Alignment.center,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 15.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: Text(
+                  'Absolute™',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontFamily: 'new',
+                  ),
+                ),
               ),
             )
           ],
