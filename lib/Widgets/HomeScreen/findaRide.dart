@@ -89,7 +89,7 @@ class _FindaRideState extends State<FindaRide> {
                 width: 10.0,
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0)),
+                      borderRadius: new BorderRadius.circular(20.0)),
                   color: Colors.black,
                   textColor: Colors.white,
                   child: Text("Time", style: TextStyle(fontSize: 16.0)),
@@ -99,7 +99,7 @@ class _FindaRideState extends State<FindaRide> {
               // Confirm button
               GestureDetector(
                 child: Container(
-                  padding: EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
                       "Find A Ride",
@@ -111,10 +111,11 @@ class _FindaRideState extends State<FindaRide> {
                   ),
                   decoration: BoxDecoration(
                       color: Colors.green,
-                      borderRadius: BorderRadius.circular(10.0)),
+                      borderRadius: BorderRadius.circular(20.0)),
                 ),
                 onTap: () {
                   showBottomSheet(
+                    // backgroundColor: Colors.black,
                       context: context, builder: (context) => ConfirmCard(destination,pickedTime));
                 },
               )
