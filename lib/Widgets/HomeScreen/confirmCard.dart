@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
-class ConfirmCard extends StatelessWidget {
+class ConfirmCard extends StatefulWidget {
   final String location;
   final TimeOfDay time;
 
   ConfirmCard(this.location, this.time);
+
+  @override
+  _ConfirmCardState createState() => _ConfirmCardState();
+}
+
+class _ConfirmCardState extends State<ConfirmCard> {
+  String status = "waiting";
+
+  void _confirmRide() {
+    setState(() {
+      status = "loading";
+    });
+
+    Timer(Duration(seconds: 3), () {
+      setState(() {
+        status = "finished";
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +66,12 @@ class ConfirmCard extends StatelessWidget {
             leading: IconTheme(
                 data: IconThemeData(color: Colors.white),
                 child: Icon(Icons.location_on)),
-            title: location == ""
+            title: widget.location == ""
                 ? Text("Destination not selected",
                     style: TextStyle(color: Colors.white))
-                : Text(location, style: TextStyle(color: Colors.white)),
-            subtitle:
-                Text(time.toString(), style: TextStyle(color: Colors.white)),
+                : Text(widget.location, style: TextStyle(color: Colors.white)),
+            subtitle: Text(widget.time.toString(),
+                style: TextStyle(color: Colors.white)),
           ),
           SizedBox(
             height: 20.0,
@@ -60,29 +80,54 @@ class ConfirmCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(5.0),
-                width: 240.0,
-                height: 50.0,
-                child: GestureDetector(
-                  child: Center(
-                    child: Text(
-                      "Confirm Ride",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20.0)),
-              )
+              renderWidget(status)
             ],
-          )
+          ),
         ],
       )),
     );
   }
+
+
+
+
+Widget renderWidget(String status) {
+
+  if (status == "waiting") {
+    return Container(
+        width: 200.0,
+        height: 50.0,
+        child: RaisedButton(
+          child: Text(
+            "Confirm Ride",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold),
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          padding: EdgeInsets.all(5.0),
+          color: Colors.green,
+          textColor: Colors.white,
+          onPressed: _confirmRide,
+        ));
+  }
+
+  if (status == "loading") {
+    return CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+    );
+  }
+
+  if(status == "finished"){
+    return RaisedButton(
+      color: Colors.white,
+      textColor: Colors.green,
+      onPressed: (){},
+      child: Text("Done"),
+    );
+  }
+}
+
 }

@@ -97,28 +97,29 @@ class _FindaRideState extends State<FindaRide> {
                 ),
               ),
               // Confirm button
-              GestureDetector(
-                child: Container(
-                  padding: EdgeInsets.all(10.0),
-                  child: Center(
-                    child: Text(
-                      "Find A Ride",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.green,
+              SizedBox(
+                height: 40.0,
+                child: RaisedButton(
+                  onPressed: () {
+                    showBottomSheet(
+                        // backgroundColor: Colors.black,
+                        context: context,
+                        builder: (context) =>
+                            ConfirmCard(destination, pickedTime));
+                  },
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0)),
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  child: Text(
+                    "Find A Ride",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0),
+                  ),
                 ),
-                onTap: () {
-                  showBottomSheet(
-                    // backgroundColor: Colors.black,
-                      context: context, builder: (context) => ConfirmCard(destination,pickedTime));
-                },
-              )
+              ),
             ],
           ),
         ),
@@ -126,4 +127,3 @@ class _FindaRideState extends State<FindaRide> {
     );
   }
 }
-
