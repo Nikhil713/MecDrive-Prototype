@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'confirmCard.dart';
+
 class FindaRide extends StatefulWidget {
   @override
   _FindaRideState createState() => _FindaRideState();
@@ -35,16 +37,6 @@ class _FindaRideState extends State<FindaRide> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8.0),
-            // boxShadow: [
-            //   BoxShadow(
-            //       color: Colors.black12,
-            //       offset: Offset(0.0, 15.0),
-            //       blurRadius: 15.0),
-            //   BoxShadow(
-            //       color: Colors.black12,
-            //       offset: Offset(0.0, -10.0),
-            //       blurRadius: 10.0)
-            // ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -123,7 +115,7 @@ class _FindaRideState extends State<FindaRide> {
                 ),
                 onTap: () {
                   showBottomSheet(
-                      context: context, builder: (context) => ConfirmCard());
+                      context: context, builder: (context) => ConfirmCard(destination,pickedTime));
                 },
               )
             ],
@@ -134,15 +126,3 @@ class _FindaRideState extends State<FindaRide> {
   }
 }
 
-class ConfirmCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 300.0,
-      color: Colors.redAccent,
-      child: Center(
-        child: Text("hello")
-      ),
-    );
-  }
-}

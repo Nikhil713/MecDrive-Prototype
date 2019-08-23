@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mec_drive/Widgets/HomeScreen/homeScreen.dart';
 
-import './splashscreen/splashscreen.dart';
-import './rides/rides.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

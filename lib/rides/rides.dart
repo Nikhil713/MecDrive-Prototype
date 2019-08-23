@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './rides_Card.dart';
+import './rides_card.dart';
 
 class RidesPage extends StatelessWidget {
   // Hard Coded Data
