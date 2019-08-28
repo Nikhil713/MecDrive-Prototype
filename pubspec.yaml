@@ -22,6 +22,7 @@ flutter:
     - assets/logo.png
     - assets/elon.jpg
     - assets/loading.gif
+    - assets/loginbg.jpg
     # - images/a_dot_ham.jpeg
   fonts:
     - family: new
