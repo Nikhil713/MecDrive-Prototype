@@ -85,27 +85,25 @@ class _FindaRideState extends State<FindaRide> {
               ),
               // Time
               SizedBox(
-                width: 10.0,
                 child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0)),
                   color: Colors.black,
                   textColor: Colors.white,
-                  child: Text("Time", style: TextStyle(fontSize: 16.0)),
+                  child: Text("Select Time", style: TextStyle(fontSize: 16.0)),
                   onPressed: () => _selectTime(context),
                 ),
               ),
               // Confirm button
               SizedBox(
-                height: 40.0,
                 child: RaisedButton(
                   onPressed: () {
                     showBottomSheet(
-                        // backgroundColor: Colors.black,
                         context: context,
                         builder: (context) =>
-                            ConfirmCard(destination, pickedTime));
+                            ConfirmCard(destination, pickedTime)
+                    );
                   },
+                  elevation: 6.0,
+                  padding: EdgeInsets.all(10.0),
                   color: Colors.green,
                   textColor: Colors.white,
                   child: Text(

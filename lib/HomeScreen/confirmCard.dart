@@ -12,17 +12,52 @@ class ConfirmCard extends StatefulWidget {
 }
 
 class _ConfirmCardState extends State<ConfirmCard> {
-  String status = "waiting";
+  String status = "booking";
 
-  void _confirmRide() {
-    setState(() {
-      status = "loading";
-    });
+  // Send ride request to server
+  void _confirmRide(BuildContext context) {
+
+    // alertbox
+    final alertDialog = AlertDialog(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+          ),
+          SizedBox(
+            width: 40.0,
+          ),
+          Text(
+            "Sending Request",
+            style: TextStyle(
+              color: Colors.grey
+            ),
+          )
+        ],
+      ),
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => alertDialog
+    ); 
+
+    // Snackbar
+    final snack = SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(
+          "Request has been successfully sent!",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        duration: Duration(seconds: 3),
+    );
 
     Timer(Duration(seconds: 3), () {
-      setState(() {
-        status = "finished";
-      });
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Scaffold.of(context).showSnackBar(snack);
     });
   }
 
@@ -74,60 +109,32 @@ class _ConfirmCardState extends State<ConfirmCard> {
                 style: TextStyle(color: Colors.white)),
           ),
           SizedBox(
-            height: 20.0,
+            height: 25.0,
           ),
           // Confirm Ride button
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              renderWidget(status)
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: RaisedButton(
+                  onPressed: () => _confirmRide(context),
+                  child: Center(
+                    child: Text(
+                      "Confirm Ride",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  textColor: Colors.white,
+                  color: Colors.green,
+                  padding: EdgeInsets.all(12.0),
+                ),
+              )
             ],
           ),
         ],
       )),
     );
   }
-
-
-
-
-Widget renderWidget(String status) {
-
-  if (status == "waiting") {
-    return Container(
-        width: 200.0,
-        height: 50.0,
-        child: RaisedButton(
-          child: Text(
-            "Confirm Ride",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold),
-          ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          padding: EdgeInsets.all(5.0),
-          color: Colors.green,
-          textColor: Colors.white,
-          onPressed: _confirmRide,
-        ));
-  }
-
-  if (status == "loading") {
-    return CircularProgressIndicator(
-      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-    );
-  }
-
-  if(status == "finished"){
-    return RaisedButton(
-      color: Colors.white,
-      textColor: Colors.green,
-      onPressed: (){},
-      child: Text("Done"),
-    );
-  }
-}
-
 }
