@@ -19,9 +19,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/logo.png
     - assets/elon.jpg
-    - assets/loading.gif
+    - assets/carpool.jpg
     - assets/loginbg.jpg
     # - images/a_dot_ham.jpeg
   fonts:

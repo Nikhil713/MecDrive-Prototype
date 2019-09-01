@@ -6,13 +6,62 @@ class OfferRide extends StatefulWidget {
 }
 
 class _OfferRideState extends State<OfferRide> {
+  bool carRegistered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return carRegistered
+        ?
+        // Car/Bike is registered for pooling
+        Container()
+        :
+        // No car registered for pooling
+        NotRegistered();
+  }
+}
+
+
+// Widget displayed when no Car is registered
+class NotRegistered extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Center(
-        child: RaisedButton(
-          child: Text("offer a ride"),
-          onPressed: () {},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 50.0,
+            ),
+            Image(
+              width: MediaQuery.of(context).size.width * 0.6,
+              image: AssetImage("assets/carpool.jpg"),
+              // fit: BoxFit.contain,
+            ),
+            Text(
+              "Oops! You have no Car/Bike registred",
+              style: TextStyle(color: Colors.grey, fontSize: 16.0),
+            ),
+            SizedBox(height: 10.0),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.6,
+              child: RaisedButton(
+                onPressed: () {},
+                splashColor: Colors.grey,
+                padding: EdgeInsets.all(5.0),
+                color: Colors.black,
+                elevation: 4.0,
+                textColor: Colors.white,
+                child: Center(
+                  child: Text(
+                    "Register",
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
