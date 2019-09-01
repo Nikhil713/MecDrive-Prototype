@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mec_drive/HomeScreen/rideRequestList.dart';
 
 class OfferRide extends StatefulWidget {
   @override
@@ -6,17 +7,14 @@ class OfferRide extends StatefulWidget {
 }
 
 class _OfferRideState extends State<OfferRide> {
-  bool carRegistered = false;
+  bool carRegistered = true;
 
   @override
   Widget build(BuildContext context) {
-    return carRegistered
-        ?
-        // Car/Bike is registered for pooling
-        Container()
-        :
-        // No car registered for pooling
-        NotRegistered();
+    return carRegistered ? 
+    RideRequestList() 
+    : 
+    NotRegistered();
   }
 }
 
