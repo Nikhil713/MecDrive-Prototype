@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'confirmCard.dart';
 
 class FindaRide extends StatefulWidget {
@@ -107,8 +106,6 @@ class _FindaRideState extends State<FindaRide> {
                         builder: (context) =>
                             ConfirmCard(destination, pickedTime));
                   },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
                   color: Colors.green,
                   textColor: Colors.white,
                   child: Text(

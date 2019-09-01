@@ -34,7 +34,7 @@ class _ConfirmCardState extends State<ConfirmCard> {
       decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
+              topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
       child: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
