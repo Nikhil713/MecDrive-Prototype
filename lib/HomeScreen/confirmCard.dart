@@ -51,7 +51,7 @@ class _ConfirmCardState extends State<ConfirmCard> {
             color: Colors.white,
           ),
         ),
-        duration: Duration(seconds: 3),
+        duration: Duration(seconds: 2),
     );
 
     Timer(Duration(seconds: 3), () {
