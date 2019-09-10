@@ -16,7 +16,6 @@ class _ConfirmCardState extends State<ConfirmCard> {
 
   // Send ride request to server
   void _confirmRide(BuildContext context) {
-
     // alertbox
     final alertDialog = AlertDialog(
       content: Row(
@@ -30,34 +29,29 @@ class _ConfirmCardState extends State<ConfirmCard> {
           ),
           Text(
             "Sending Request",
-            style: TextStyle(
-              color: Colors.grey
-            ),
+            style: TextStyle(color: Colors.grey),
           )
         ],
       ),
     );
     showDialog(
-      context: context,
-      builder: (BuildContext context) => alertDialog
-    ); 
+        context: context, builder: (BuildContext context) => alertDialog);
 
     // Snackbar
     final snack = SnackBar(
-        backgroundColor: Colors.green,
-        content: Text(
-          "Request has been successfully sent!",
-          style: TextStyle(
-            color: Colors.white,
-          ),
+      backgroundColor: Colors.green,
+      content: Text(
+        "Request has been successfully sent!",
+        style: TextStyle(
+          color: Colors.white,
         ),
-        duration: Duration(seconds: 2),
+      ),
+      duration: Duration(seconds: 3),
     );
 
     Timer(Duration(seconds: 3), () {
       Navigator.pop(context);
-      Navigator.pop(context);
-      Scaffold.of(context).showSnackBar(snack);
+      Navigator.pop(context,snack);
     });
   }
 
@@ -65,26 +59,25 @@ class _ConfirmCardState extends State<ConfirmCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.0),
-      height: 300.0,
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(7.0), topRight: Radius.circular(7.0))),
+      // height: 00.0,
+      // decoration: BoxDecoration(
+      //     color: Colors.black,
+      //     borderRadius: BorderRadius.only(
+      //         topLeft: Radius.circular(7.0), topRight: Radius.circular(7.0))),
       child: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 20.0),
+          SizedBox(height: 50.0),
           // From
           ListTile(
-            leading: IconTheme(
-                data: IconThemeData(color: Colors.white),
-                child: Icon(Icons.location_on)),
-            title: Text("Model Engineering College",
-                style: TextStyle(color: Colors.white)),
-            subtitle:
-                Text("Thrikkakara", style: TextStyle(color: Colors.white)),
+            leading: Icon(
+              Icons.location_on,
+              color: Colors.black,
+            ),
+            title: Text("Model Engineering College"),
+            subtitle: Text("Thrikkakara"),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,18 +91,17 @@ class _ConfirmCardState extends State<ConfirmCard> {
           ),
           // Destination
           ListTile(
-            leading: IconTheme(
-                data: IconThemeData(color: Colors.white),
-                child: Icon(Icons.location_on)),
+            leading: Icon(
+              Icons.location_on,
+              color: Colors.black,
+            ),
             title: widget.location == ""
-                ? Text("Destination not selected",
-                    style: TextStyle(color: Colors.white))
-                : Text(widget.location, style: TextStyle(color: Colors.white)),
-            subtitle: Text(widget.time.toString(),
-                style: TextStyle(color: Colors.white)),
+                ? Text("Destination not selected")
+                : Text(widget.location),
+            subtitle: Text(widget.time.toString()),
           ),
           SizedBox(
-            height: 25.0,
+            height: 40.0,
           ),
           // Confirm Ride button
           Row(

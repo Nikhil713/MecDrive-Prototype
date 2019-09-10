@@ -95,10 +95,11 @@ class _FindaRideState extends State<FindaRide> {
                 SizedBox(
                   child: RaisedButton(
                     onPressed: () {
-                      showBottomSheet(
+                      showModalBottomSheet(
                           context: context,
                           builder: (context) =>
-                              ConfirmCard(destination, pickedTime));
+                              ConfirmCard(destination, pickedTime)
+                      ).then((snack) => Scaffold.of(context).showSnackBar(snack));
                     },
                     elevation: 6.0,
                     padding: EdgeInsets.all(10.0),

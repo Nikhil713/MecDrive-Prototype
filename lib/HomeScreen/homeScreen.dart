@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './findaRide.dart';
-import './offerRide.dart';
+import 'package:mec_drive/HomeScreen/FindRide/findaRide.dart';
+import 'package:mec_drive/HomeScreen/OfferRide/offerRide.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
