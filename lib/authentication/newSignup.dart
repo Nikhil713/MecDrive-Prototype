@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:http/http.dart' as http;
 
 class SignUp extends StatefulWidget {
   @override
@@ -10,10 +12,41 @@ class _SignUpState extends State<SignUp> {
 
   // Form field variables
   String name = "";
-  String phone = "";
+  int phone = 0;
   String branch = "CSA";
   String year = '1';
   int carpool;
+
+  // Submit the user details to database
+  Future<String> submitForm() async {
+    String url = 'http://192.168.0.103:8000';
+    Map<String,String> headers = {"Content-type":"application/json"};
+
+    Map<String,dynamic> signUp = {
+      "name"          : name,
+      "branch"        : branch,
+      "year"          : year,
+      "phone"         : phone,
+      "acceptedRides" : []
+    };
+
+    String json = signUp.toString();
+    // Make post request 
+    http.Response response = await http.post(
+      Uri.http("localhost:8000", "/api/user/"),
+      headers: headers,
+      body: json
+    );
+
+    print(response.body);
+    // check status code of result
+    // int statusCode = response.statusCode;
+    // print(statusCode);
+
+    // The response from backend
+    // String body = response.body;
+    // print(body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                         },
                         onSaved: (val) {
                           setState(() {
-                            phone = val;
+                            phone = int.parse(val);
                           });
                         },
                       ),
@@ -193,11 +226,14 @@ class _SignUpState extends State<SignUp> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            RaisedButton(
-                              color: Colors.green,
-                              child: Text("Register",),
-                              textColor: Colors.white,
-                              onPressed: (){},
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: RaisedButton(
+                                color: Colors.green,
+                                child: Text("Register"),
+                                textColor: Colors.white,
+                                onPressed: submitForm,
+                              ),
                             )
                           ],
                         ),
