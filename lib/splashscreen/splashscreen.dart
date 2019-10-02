@@ -11,39 +11,45 @@ class Loading extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: 150.0,
-            ),
-            // Image(
-            //   image: AssetImage('assets/logo.png'),
-            //   width: 160.0,
-            // ),
+
             Container(
               padding: EdgeInsets.all(20.0),
-              child: Text(
-                'MEC DRIVE',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 55.0,
-                    fontFamily: 'titlefontt',
-                    fontWeight: FontWeight.bold),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('MEC ',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          height: .7)),
+                  Text(
+                    'DRIVE',
+                    style: TextStyle(
+                        color: Color(0xFF5eb809),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        height: .7),
+                  )
+                ],
               ),
             ),
             SizedBox(
-              height: 200.0,
+              height: 100.0,
             ),
             SizedBox(
-              height: 60,
-              width: 60,
+              height: 40,
+              width: 40,
               child: CircularProgressIndicator(
                 backgroundColor: Colors.white,
-                valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
               ),
             ),
 
             SizedBox(
-              height: 50.0,
+              height: 40.0,
             ),
             Container(
               alignment: Alignment.center,
@@ -51,7 +57,7 @@ class Loading extends StatelessWidget {
                 'Carpool for Mecians',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20.0,
+                    fontSize: 13.0,
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -68,7 +74,7 @@ class Loading extends StatelessWidget {
                   'Absolute™',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 13.0,
                     fontFamily: 'new',
                   ),
                 ),

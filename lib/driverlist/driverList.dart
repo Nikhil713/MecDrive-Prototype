@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import './rides_card.dart';
+import './rides_Card.dart';
 
-class RidesPage extends StatelessWidget {
+class DriversListPage extends StatelessWidget {
   // Hard Coded Data
   final List<Map<String, dynamic>> ridesData = [
     {
       'name': 'Elon Musk',
       'class': 'CS10A',
-      'price': 999,
+      'price': '999',
       'phone' : '912345678',
       'destination':'Edapilly',
       'image': 'assets/elon.jpg',
       'time':'4 PM',
     },
         {
-      'name': 'Joyal',
+      'name': 'Joyal A Johney',
       'class': 'CS5A',
-      'price': 10,
+      'price': '10',
       'phone' : '123456789',
       'destination':'Edapilly',
       'image': 'assets/elon.jpg',
@@ -31,10 +31,10 @@ class RidesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Available Rides',
-          style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1)),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Color.fromRGBO(100, 100, 100, 1)),
+        backgroundColor: Colors.black,
+        // iconTheme: IconThemeData(color: Color.fromRGBO(100, 100, 100, 1)),
         centerTitle: true,
       ),
       body: PageContent(ridesData),
