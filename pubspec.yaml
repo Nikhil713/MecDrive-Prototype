@@ -23,6 +23,7 @@ flutter:
     - assets/elon.jpg
     - assets/carpool.jpg
     - assets/loginbg.jpg
+    - assets/profilepic.jpeg
     # - images/a_dot_ham.jpeg
   fonts:
     - family: new
