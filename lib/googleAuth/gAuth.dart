@@ -14,11 +14,29 @@ class _MyHomePageState extends State<GAuth> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 130,
+            height: 110,
+          ),
+          Text(
+            "Carpool",
+            style: TextStyle(
+              fontSize: 40,
+              color: Colors.black),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+           Text(
+            "Nikhil Babu is awesome!!!",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black),
+          ),
+          SizedBox(
+            height: 30,
           ),
           Image.asset('assets/SignUp2.jpg'),
           SizedBox(
-            height: 130,
+            height: 70,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
