@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
-class GAuth extends StatefulWidget {
+class googleSignIn extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<GAuth> {
+class _MyHomePageState extends State<googleSignIn> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -18,25 +18,19 @@ class _MyHomePageState extends State<GAuth> {
           ),
           Text(
             "Carpool",
-            style: TextStyle(
-              fontSize: 40,
-              color: Colors.black),
+            style: TextStyle(fontSize: 40, color: Colors.black),
           ),
+          Container(
+            child:Text(
+              "Nikhil Babu is awesome!!!There are no words to describe his greatness",
+              style: TextStyle(fontSize: 17, color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            padding: EdgeInsets.all(20),
+          ),
+          Image.asset('assets/gauth.png'),
           SizedBox(
-            height: 30,
-          ),
-           Text(
-            "Nikhil Babu is awesome!!!",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Image.asset('assets/SignUp2.jpg'),
-          SizedBox(
-            height: 70,
+            height: 60,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

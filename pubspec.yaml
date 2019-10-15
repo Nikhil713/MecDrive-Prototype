@@ -27,6 +27,7 @@ flutter:
     - assets/profilepic.jpeg
     - assets/signup.png
     - assets/SignUp2.jpg
+    - assets/gauth.png
     # - images/a_dot_ham.jpeg
   fonts:
     - family: new
