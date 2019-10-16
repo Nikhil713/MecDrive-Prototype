@@ -35,39 +35,46 @@ class _SignUpState extends State<SignUp> {
       prefs.setBool('carpool', false);
   }
 
-  void loaderingDialog() {
-    setState(() {
-      isLoading = true;
-    });
+  void loadingDialog() {
+    //show Alert dialog
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                ),
-                SizedBox(
-                  width: 40.0,
-                ),
-                Text(
-                  "Sending Request",
-                  style: TextStyle(color: Colors.grey),
-                )
-              ],
-            ),
-          );
-        }).then((e) {
-      if (!isLoading) {
-        Navigator.pop(context);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) {
-          return HomeScreen();
-        }));
-      }
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+              ),
+              SizedBox(
+                width: 40.0,
+              ),
+              Text(
+                "Sending Request",
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+        );
+      },
+    );
+
+    Future.delayed(Duration(
+      seconds: 3,
+    ),(){
+      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, '/homescreen');
     });
+
+
+    //Submit form to the backend
+    // submitForm().then((e) {
+    //   Navigator.pop(context);
+    //   Navigator.pushReplacementNamed(context, '/homescreen');
+    // }).catchError((e){
+    //   print(e + "did not work");
+    // });
   }
 
   // Submit the user details to database
@@ -88,16 +95,15 @@ class _SignUpState extends State<SignUp> {
 
     String json = signUp.toString();
     // Make post request
-    http.Response response = await http
-        .post(Uri.http("localhost:8000", "/api/user/"),
-            headers: headers, body: json)
-        .then((e) {
-      setState(() {
-        isLoading = false;
-      });
+    await http.post(
+      Uri.http("localhost:8000", "/api/user/"),
+      headers: headers,
+      body: json,
+    ).then((e){
+      return e;
+    }).catchError((e){
+      print(e + "did not work");
     });
-
-    print(response.body);
   }
 
   @override
@@ -279,14 +285,10 @@ class _SignUpState extends State<SignUp> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width / 2,
                               child: RaisedButton(
-                                color: Colors.green,
-                                child: Text("Register"),
-                                textColor: Colors.white,
-                                onPressed: () {
-                                  loaderingDialog();
-                                  submitForm();
-                                },
-                              ),
+                                  color: Colors.green,
+                                  child: Text("Register"),
+                                  textColor: Colors.white,
+                                  onPressed: loadingDialog),
                             )
                           ],
                         ),
