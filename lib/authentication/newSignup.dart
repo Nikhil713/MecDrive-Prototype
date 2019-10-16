@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:mec_drive/HomeScreen/homeScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -10,6 +12,9 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  //loading check
+  bool isLoading = false;
+
   // Form field variables
   String name = "";
   int phone = 0;
@@ -17,35 +22,82 @@ class _SignUpState extends State<SignUp> {
   String year = '1';
   int carpool;
 
+  // Save user information in shared preferences
+  saveUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('userName', name);
+    prefs.setInt('userPhone', phone);
+    prefs.setString('userBranch', branch);
+    prefs.setString('userYear', year);
+    if (carpool == 1)
+      prefs.setBool('carpool', true);
+    else
+      prefs.setBool('carpool', false);
+  }
+
+  void loaderingDialog() {
+    setState(() {
+      isLoading = true;
+    });
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                ),
+                SizedBox(
+                  width: 40.0,
+                ),
+                Text(
+                  "Sending Request",
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
+            ),
+          );
+        }).then((e) {
+      if (!isLoading) {
+        Navigator.pop(context);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) {
+          return HomeScreen();
+        }));
+      }
+    });
+  }
+
   // Submit the user details to database
   Future<String> submitForm() async {
-    String url = 'http://192.168.0.103:8000';
-    Map<String,String> headers = {"Content-type":"application/json"};
+    //save user information in shared preferences
+    saveUserInfo();
 
-    Map<String,dynamic> signUp = {
-      "name"          : name,
-      "branch"        : branch,
-      "year"          : year,
-      "phone"         : phone,
-      "acceptedRides" : []
+    String url = 'http://192.168.0.103:8000';
+    Map<String, String> headers = {"Content-type": "application/json"};
+
+    Map<String, dynamic> signUp = {
+      "name": name,
+      "branch": branch,
+      "year": year,
+      "phone": phone,
+      "acceptedRides": []
     };
 
     String json = signUp.toString();
-    // Make post request 
-    http.Response response = await http.post(
-      Uri.http("localhost:8000", "/api/user/"),
-      headers: headers,
-      body: json
-    );
+    // Make post request
+    http.Response response = await http
+        .post(Uri.http("localhost:8000", "/api/user/"),
+            headers: headers, body: json)
+        .then((e) {
+      setState(() {
+        isLoading = false;
+      });
+    });
 
     print(response.body);
-    // check status code of result
-    // int statusCode = response.statusCode;
-    // print(statusCode);
-
-    // The response from backend
-    // String body = response.body;
-    // print(body);
   }
 
   @override
@@ -59,6 +111,9 @@ class _SignUpState extends State<SignUp> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              SizedBox(
+                height: 40,
+              ),
               Image(
                 width: 320.0,
                 image: AssetImage("assets/SignUp2.jpg"),
@@ -69,7 +124,7 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 140.0,
+                height: MediaQuery.of(context).size.height / 4,
               ),
               // Sign Up container
               Container(
@@ -99,13 +154,10 @@ class _SignUpState extends State<SignUp> {
                       // UserName
                       TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Name",
-                          icon: Icon(Icons.account_circle)
-                        ),
+                            labelText: "Name",
+                            icon: Icon(Icons.account_circle)),
                         keyboardType: TextInputType.text,
-                        style: TextStyle(
-                          fontFamily: "Poppins"
-                        ),
+                        style: TextStyle(fontFamily: "Poppins"),
                         validator: (value) {
                           if (value.isEmpty) return "Name field is required";
                         },
@@ -118,9 +170,7 @@ class _SignUpState extends State<SignUp> {
                       // Phone
                       TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Phone",
-                          icon: Icon(Icons.phone)
-                        ),
+                            labelText: "Phone", icon: Icon(Icons.phone)),
                         keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value.isEmpty) return "Phone no is required";
@@ -232,7 +282,10 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.green,
                                 child: Text("Register"),
                                 textColor: Colors.white,
-                                onPressed: submitForm,
+                                onPressed: () {
+                                  loaderingDialog();
+                                  submitForm();
+                                },
                               ),
                             )
                           ],
