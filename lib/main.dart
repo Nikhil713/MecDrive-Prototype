@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mec_drive/authentication/googleAuth.dart';
 import 'package:mec_drive/splashscreen/splashscreen.dart';
 
 
@@ -9,7 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "carpool",
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: GoogleAuth(),
     );
   }
 }
