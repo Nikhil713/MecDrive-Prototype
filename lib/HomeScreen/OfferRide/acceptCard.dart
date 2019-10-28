@@ -42,7 +42,7 @@ class _AcceptCardState extends State<AcceptCard> {
               leading: Icon(Icons.location_on),
               title: Text("Destination"),
               // subtitle: Text("Time : 5AM"),
-              subtitle: Text(convertTimeTo12Hour('00:00')),
+              subtitle: Text(convertTimeTo12Hour('(00:00)')),
             ),
           ),
           ListTile(
@@ -90,6 +90,7 @@ class _AcceptCardState extends State<AcceptCard> {
 }
 
 convertTimeTo12Hour(time24) {
+  time24=time24.substring(1,time24.length-1);
   var time = time24.split(':');
   var hours = int.parse(time[0]);
   var mins = int.parse(time[1]);
