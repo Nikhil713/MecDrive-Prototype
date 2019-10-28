@@ -3,6 +3,7 @@ import 'package:mec_drive/HomeScreen/homeScreen.dart';
 import 'package:mec_drive/authentication/googleAuth.dart';
 import 'package:mec_drive/authentication/newSignup.dart';
 import 'package:mec_drive/splashscreen/splashscreen.dart';
+import 'package:mec_drive/credits/credits.dart';
 import 'AcceptedList/AcceptedDriversPage.dart';
 
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       // home: SplashScreen(),
       // home: AcceptedDriversPage(),
       // home: RideRequestList(),
-      home: SignUp(),
+      // home: SignUp(),
+      home: Credits(),
       routes: {
         '/homescreen' : (context) => HomeScreen(),
       },
