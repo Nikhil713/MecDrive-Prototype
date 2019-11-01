@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'package:mec_drive/HomeScreen/homeScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
@@ -82,7 +81,7 @@ class _SignUpState extends State<SignUp> {
     //save user information in shared preferences
     saveUserInfo();
 
-    String url = 'http://192.168.0.103:8000';
+    // String url = 'http://192.168.0.103:8000';
     Map<String, String> headers = {"Content-type": "application/json"};
 
     Map<String, dynamic> signUp = {
@@ -104,6 +103,7 @@ class _SignUpState extends State<SignUp> {
     }).catchError((e){
       print(e + "did not work");
     });
+    return '';
   }
 
   @override
@@ -166,6 +166,7 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(fontFamily: "Poppins"),
                         validator: (value) {
                           if (value.isEmpty) return "Name field is required";
+                          return '';
                         },
                         onSaved: (val) {
                           setState(() {
@@ -180,6 +181,7 @@ class _SignUpState extends State<SignUp> {
                         keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value.isEmpty) return "Phone no is required";
+                          return ';';
                         },
                         onSaved: (val) {
                           setState(() {

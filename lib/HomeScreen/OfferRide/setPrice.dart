@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SetPrice extends StatelessWidget {
+class SetPrice extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<SetPrice> {
   String price;
   @override
   Widget build(BuildContext context) {
