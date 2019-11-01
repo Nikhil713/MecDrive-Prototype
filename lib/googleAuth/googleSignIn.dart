@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
-class googleSignIn extends StatefulWidget {
+class GoogleSignIn extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<googleSignIn> {
+class _MyHomePageState extends State<GoogleSignIn> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

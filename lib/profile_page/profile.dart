@@ -15,7 +15,7 @@ class _MyHomePageState extends State<ProfilePage> {
         children: <Widget>[
           ClipPath(
             child: Container(color: Colors.black.withOpacity(0.8)),
-            clipper: getClipper(),
+            clipper: GetClipper(),
           ),
           Positioned(
             width: 350.0,
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<ProfilePage> {
   }
 }
 
-class getClipper extends CustomClipper<Path> {
+class GetClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = new Path();
