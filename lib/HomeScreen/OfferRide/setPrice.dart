@@ -12,9 +12,9 @@ class SetPrice extends StatelessWidget {
       content: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: TextFormField(
-          onChanged: (value) {
-            price = value;
-          },
+          // onChanged: (value) {
+          //   price = value;
+          // },
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             hintText: 'Price',
