@@ -6,6 +6,7 @@ import 'package:mec_drive/credits/credits.dart';
 import 'AcceptedList/AcceptedDriversPage.dart';
 import 'package:mec_drive/profile_page/profile.dart';
 import './phonecall/phonecall.dart';
+import './HomeScreen/myRequests/myRequests.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/signup': (BuildContext context) => SignUp(),
         '/accepteddriverspage': (BuildContext context) => AcceptedDriversPage(),
         '/profilepage': (BuildContext context) => ProfilePage(),
+        '/myrequests': (BuildContext context) => MyRequests(),
       },
     );
   }
@@ -78,11 +80,17 @@ class Mainwidget extends StatelessWidget {
             },
             child: Text('Accepted Drivers'),
           ),
-                    RaisedButton(
+          RaisedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/profilepage');
             },
             child: Text('Profile Page'),
+          ),
+          RaisedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/myrequests');
+            },
+            child: Text('Requests Page'),
           ),
         ],
       ),
