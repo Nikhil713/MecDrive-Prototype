@@ -9,24 +9,27 @@ class _MyHomePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          "My Profile",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height/13),
+              child: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            "My Profile",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
       ),
       body: new Stack(
         children: <Widget>[
-          // ClipPath(
-          //   child: Container(color: Colors.black.withOpacity(0.8)),
-          //   clipper: GetClipper(),
-          // ),
+          ClipPath(
+            child: Container(color: Colors.black.withOpacity(1)),
+            clipper: GetClipper(),
+          ),
           Positioned(
             width: 350.0,
-            // left: 30,
-            top: MediaQuery.of(context).size.height / 10,
+            left: 5,
+            top: MediaQuery.of(context).size.height / 8,
             
             child: Column(
               children: <Widget>[
@@ -38,7 +41,7 @@ class _MyHomePageState extends State<ProfilePage> {
                       image: DecorationImage(
                           image: AssetImage('assets/profilepic.jpeg'),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(105.0)),
                       boxShadow: [
                         BoxShadow(blurRadius: 9.0, color: Colors.black)
                       ]),
@@ -58,12 +61,21 @@ class _MyHomePageState extends State<ProfilePage> {
                   getBranch('CSA'),
                   style: TextStyle(
                     fontSize: 22.0,
-                    fontStyle: FontStyle.italic,
+                    // fontStyle: FontStyle.it,
                   ),
                 ),
+                SizedBox(height: 15),
+                Text(
+                  getYear('3'),
+                  style: TextStyle(
+                    fontSize:22.0,
+                    // fontStyle: FontStyle.italic,
+                  ),
+                ),
+
                 SizedBox(height: 35),
                 Text(
-                  '9876543210',
+                  'Phone: 9876543210',
                   style: TextStyle(
                     fontSize: 25.0,
                     // fontWeight: FontWeight.bold,
@@ -124,8 +136,8 @@ class GetClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = new Path();
 
-    path.lineTo(0.0, size.height / 2.1);
-    path.lineTo(size.width + 125, 0.0);
+    path.lineTo(0.0, size.height / 3.5);
+    path.lineTo(size.width + 60500, 0.0);
     path.close();
     return path;
   }
@@ -147,4 +159,17 @@ getBranch(String branch)
   if(branch=='EEE')
     return 'Electronics & Electrical';
   return branch;
+}
+
+getYear(String year)
+{
+  if (year == "1")
+    return '1st Year';
+  if (year == "2")
+    return '2nd Year';
+  if (year == "3")
+    return '3rd Year';
+  if (year == "4")
+    return '4th Year';
+  return year;
 }
